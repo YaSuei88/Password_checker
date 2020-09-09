@@ -17,9 +17,11 @@ def request_api_data(query_char):
     return res
 
 
-# check if there is any match for the tails from the data that is requested from pwned,
-# return the number of leaking if there is a match
-# hashes = all responses, hash_to_check = tail
+'''check if there is any match for the tails from the data that is requested from pwned,
+    return the number of leaking if there is a match
+    hashes = all responses, hash_to_check = tail'''
+
+
 def get_password_leak_count(hashes, hash_to_check):
     hashes = (line.split(':') for line in hashes.text.splitlines())
     for h, count in hashes:
