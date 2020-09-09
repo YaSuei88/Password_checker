@@ -56,16 +56,16 @@ main(passwords)
 
 '''code below is for taking arguments from terminal directly
 
-    import sys library if using the code below
+    import sys library if using the code below'''
 
-def main(args):
-    for password in args:
-        count = pwned_api_check(password)
-        if count:
-            print(f'{password} was found {count} times....you should change your password')
-        else:
-            print(f'{password} was Not found. Carry on!' )
-    return "checked"
+# def main(args):
+#     for password in args:
+#         count = pwned_api_check(password)
+#         if count:
+#             print(f'{password} was found {count} times....you should change your password')
+#         else:
+#             print(f'{password} was Not found. Carry on!' )
+#     return "checked"
 
-main(sys.argv[1:])
-'''
+# main(sys.argv[1:])
+# '''
