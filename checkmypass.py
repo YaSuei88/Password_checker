@@ -2,8 +2,10 @@ import requests
 import hashlib
 
 # take passowrds from the txt file, each passowrd should be in seperate line
-with open('password.txt', mode="r", encoding='UTF-8') as my_password:
+with open('password_file_name.txt', mode="r", encoding='UTF-8') as my_password:
     passwords = my_password.readlines()
+
+# make request to pwned
 
 
 def request_api_data(query_char):
@@ -15,6 +17,8 @@ def request_api_data(query_char):
     return res
 
 
+# check if there is any match for the tails from the data that is requested from pwned,
+# return the number of leaking if there is a match
 # hashes = all responses, hash_to_check = tail
 def get_password_leak_count(hashes, hash_to_check):
     hashes = (line.split(':') for line in hashes.text.splitlines())
@@ -23,8 +27,11 @@ def get_password_leak_count(hashes, hash_to_check):
             return count
     return 0  # return 0 if no match
 
+# check if part of the password exists in the API response
+# convert password to sha1 form first
 
-def pwned_api_check(password):  # check if password exists in the API response
+
+def pwned_api_check(password):
     sha1password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
     first5_cha, tail = sha1password[:5], sha1password[5:]
     # only return the rest of the shalpssword besides frist5_cha, aka tail
@@ -46,7 +53,8 @@ def main(passwords):
 main(passwords)
 
 '''code below is for taking arguments from terminal directly
-   import sys library if using the code below
+
+    import sys library if using the code below
 
 def main(args):
     for password in args:
